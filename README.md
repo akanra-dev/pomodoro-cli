@@ -1,4 +1,4 @@
-# Penguin Pomodoro CLI 🐧🍅
+# Pomodoro CLI 🐧🍅
 
 Simple Pomodoro Timer written in Go.
 
