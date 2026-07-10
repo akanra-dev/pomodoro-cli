@@ -1,7 +1,11 @@
 package main
 
 import (
+    "flag"
     "fmt"
+    "os"
+    "os/signal"
+    "syscall"
     "time"
 )
 
@@ -26,18 +30,30 @@ func countdown(minutes int, activity string) {
 
 func main() {
 
+    workMinutes := flag.Int("work", 25, "durasi sesi fokus (menit)")
+    breakMinutes := flag.Int("break", 5, "durasi sesi istirahat (menit)")
+    totalSessions := flag.Int("sessions", 4, "jumlah sesi fokus")
+    flag.Parse()
+
+    sigChan := make(chan os.Signal, 1)
+    signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
+    go func() {
+        <-sigChan
+        fmt.Println("\n\n👋 Sesi dihentikan. Sampai jumpa lagi!")
+        os.Exit(0)
+    }()
+
     fmt.Println("🐧 Penguin Pomodoro CLI")
     fmt.Println("----------------------")
 
-    for session := 1; session <= 4; session++ {
+    for session := 1; session <= *totalSessions; session++ {
 
-        fmt.Printf("\n🔥 Sesi %d/4\n", session)
+        fmt.Printf("\n🔥 Sesi %d/%d\n", session, *totalSessions)
 
-        countdown(25, "Fokus")
-        countdown(5, "Istirahat")
+        countdown(*workMinutes, "Fokus")
 
-        if session < 4 {
-            countdown(5, "Istirahat")
+        if session < *totalSessions {
+            countdown(*breakMinutes, "istirahat")
         }
     }
 
