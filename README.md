@@ -50,7 +50,7 @@ go run main.go
 
 ## Screenshot
 
-![Screenshot](fix%bug.png)
+![Screenshot](fixbug.png)
 ![Screenshot](fixbug2.png)
 ![screenshot](SELESAI.png)
 
