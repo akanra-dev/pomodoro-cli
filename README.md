@@ -50,8 +50,9 @@ go run main.go
 
 ## Screenshot
 
-![Screenshot](progress.png)
-![Screenshot](progress1actual.png)
+![Screenshot](fix bug.png)
+![Screenshot](fixbug2.png)
+![screenshot](SELESAI.png)
 
 ## Why?
 
